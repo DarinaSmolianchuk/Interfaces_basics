@@ -6,12 +6,10 @@
         xmlns:local="clr-namespace:Lr2"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    
-    <!--У контейнері Grid створіть видиму сітку розміром 3х3 і розмістіть у другому стовпці послідовно три елементи: Label, TextBox та Button.
-Визначте висоту рядків так, щоб перший був у 4 рази меншим за другий, а висота третього визначалася автоматично.
-Розтягніть елемент TextBox на весь другий рядок.-->
 
-    <Grid ShowGridLines="True">
+    <!--Замініть контейнер Grid на StackPanel і розмістіть у ньому елементи Label, TextBox та Button -->
+
+    <!--<Grid ShowGridLines="True">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="4*"></RowDefinition>
@@ -25,5 +23,15 @@
         <Label Grid.Column="1">Label</Label>
         <TextBox Grid.Row="1" Grid.ColumnSpan="3" TextWrapping="Wrap">TextBox</TextBox>
         <Button Grid.Row="2" Grid.Column="1">Button</Button>
-    </Grid>
+    </Grid>-->
+
+    <StackPanel Margin="50,50,50,0" VerticalAlignment="Top" Height="200">
+        <Label HorizontalAlignment="Center">Label</Label>
+        <TextBox >TextBox</TextBox>
+        <TextBox >TextBox</TextBox>
+        <TextBox >TextBox</TextBox>
+        <TextBox >TextBox</TextBox>
+        <Button HorizontalAlignment="Center" Margin="80" Width="200">Button</Button>
+    </StackPanel>
+
 </Window>
