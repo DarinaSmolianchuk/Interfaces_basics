@@ -5,17 +5,41 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lr2"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" MinHeight="250" MinWidth="250">
 
-    <!--Замініть контейнер Grid на StackPanel і розмістіть у ньому елементи Label, TextBox та Button -->
+    <!--Замініть контейнер StackPanel на WrapPanel і розмістіть у ньому елементи Label, TextBox та Button -->
 
-    <StackPanel Margin="50" VerticalAlignment="Top" Height="200">
-        <Label HorizontalAlignment="Center">Label</Label>
-        <TextBox >TextBox</TextBox>
-        <TextBox >TextBox</TextBox>
-        <TextBox >TextBox</TextBox>
-        <TextBox >TextBox</TextBox>
-        <Button HorizontalAlignment="Center" Margin="80" Width="200">Button</Button>
-    </StackPanel>
+    <WrapPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Vertical">
+        <WrapPanel Orientation="Horizontal">
+            <Label Content="Label"/>
+            <TextBox Text="TextBox"  Height="23" />
+            <TextBox Text="TextBox"  Height="23" />
+            <TextBox Text="TextBox"  Height="23" />
+            <TextBox Text="TextBox"  Height="23" />
+            <TextBox Text="TextBox"  Height="23" />
+            <TextBox Text="TextBox"  Height="23" />
+            <TextBox Text="TextBox"  Height="23" />
+            <TextBox Text="TextBox"  Height="23" />
+        </WrapPanel>
+
+        <WrapPanel Orientation="Horizontal">
+            <Label Content="Label"/>
+            <TextBox Text="TextBox"  Height="23" />
+            <TextBox Text="TextBox"  Height="23" />
+            <TextBox Text="TextBox"  Height="23" />
+            <TextBox Text="TextBox"  Height="23" />
+            <TextBox Text="TextBox"  Height="23" />
+            <TextBox Text="TextBox"  Height="23" />
+            <TextBox Text="TextBox"  Height="23" />
+            <TextBox Text="TextBox"  Height="23" />
+        </WrapPanel>
+
+        <!--<WrapPanel HorizontalAlignment="Center" Orientation="Vertical" Margin="25" >
+            <Button Content="Button"/>
+        </WrapPanel>-->
+        
+        <Button Content="Button" Width="50" Margin="25"/>
+        
+    </WrapPanel>
 
 </Window>
