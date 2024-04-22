@@ -5,14 +5,49 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lr2"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" MinHeight="150">
+        Title="TextEditor" Height="450" Width="800" MinWidth="350" MinHeight="300">
 
-    <!--Замініть контейнер DockPanel на Canvas і розмістіть в ньому елементи Label, TextBox і Button -->
-
-    <Canvas Background="Aqua">
-        <Label Content="Label" Canvas.Left="20" Canvas.Top="20"/>
-        <TextBox Text="TextBox" Canvas.Left="40" Canvas.Top="40"/>
-        <Button Content="Button" Canvas.Left="60" Canvas.Top="60"/>
-    </Canvas>
+    <!--ЗАВДАННЯ 2.  Розробити у WPF інтерфейс текстового редактора -->
     
+    <!--ShowGridLines="True"-->
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition ></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal">
+            <Button>
+                <Image Source="images/open.png" Width="80" ToolTip="Open" />
+            </Button>
+            <Button>
+                <Image Source="images/delete.png" Width="80" ToolTip="Delete"/>
+            </Button>
+            <Button>
+                <Image Source="images/copy.png" Width="80" ToolTip="Copy" />
+            </Button>
+            <Button>
+                <Image Source="images/paste.png" Width="80" ToolTip="Paste" />
+            </Button>
+        </StackPanel>
+
+        <Border Grid.Row="0" BorderBrush="#FFCBBEBE" BorderThickness="2" CornerRadius="10"></Border>
+        <Border Grid.Row="1" BorderBrush="#FFCBBEBE" BorderThickness="2" CornerRadius="10"></Border>
+
+        <!--ShowGridLines="True"-->
+        <Grid Grid.Row="1"  Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <TextBox Margin="10" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible"/>
+
+            <DockPanel Grid.Row="1">
+                <Button Content="OK" DockPanel.Dock="Bottom" Width="50"/>
+                <!--при VerticalAlignment="Bottom" кнопка притискається до нижньої частини без розтягування навіть без автоматичного визначення висоти рядка-->
+            </DockPanel>
+        </Grid>
+
+    </Grid>
 </Window>
