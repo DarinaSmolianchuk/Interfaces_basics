@@ -5,15 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lr2"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" MinHeight="300" MinWidth="650">
+        Title="MainWindow" Height="450" Width="800" MinHeight="150">
 
-    <!--Замініть контейнер WrapPanel на DockPanel і розмістіть у ньому елементи Label, TextBox та Button -->
+    <!--Замініть контейнер DockPanel на Canvas і розмістіть в ньому елементи Label, TextBox і Button -->
 
-    <DockPanel >
-        <Label DockPanel.Dock="Top" HorizontalAlignment="Center" Content="Label"/>
-        <TextBox DockPanel.Dock="Left" Text="TextBox" Width="250"/>
-        <TextBox DockPanel.Dock="Right" Text="TextBox" Width="250"/>
-        <Button DockPanel.Dock="Bottom" Content="Button" Height="30" Width="100" Margin="0, 200, 0, 0" />
-    </DockPanel>
-
+    <Canvas Background="Aqua">
+        <Label Content="Label" Canvas.Left="20" Canvas.Top="20"/>
+        <TextBox Text="TextBox" Canvas.Left="40" Canvas.Top="40"/>
+        <Button Content="Button" Canvas.Left="60" Canvas.Top="60"/>
+    </Canvas>
+    
 </Window>
