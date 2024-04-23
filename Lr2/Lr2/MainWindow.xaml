@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lr2"
         mc:Ignorable="d"
-        Title="TextEditor" Height="450" Width="800" MinWidth="350" MinHeight="300">
+        Title="TextEditor" Height="450" Width="800" MinWidth="400" MinHeight="300">
 
-    <!-- Завдання 3. Розробити дизайн програми із застосуванням пензлів, ресурсів, стилів, тригерів -->
+    <!-- Завдання 4. Виконати прив'язку команд та елементів -->
 
     <Window.Resources>
         <LinearGradientBrush x:Key="LinearPanelBrush">
@@ -30,18 +30,19 @@
             <RowDefinition ></RowDefinition>
         </Grid.RowDefinitions>
 
-        <StackPanel Orientation="Horizontal" Background="{StaticResource LinearPanelBrush}">
-            <Button>
+        <StackPanel Orientation="Horizontal" Background="{StaticResource LinearPanelBrush}"
+                    FocusManager.IsFocusScope="True">
+            <Button Command="Open">
                 <Image Source="images/open.png" Width="80" ToolTip="Open" />
             </Button>
-            <Button>
+            <Button Command="Delete">
                 <Image Source="images/delete.png" Width="80" ToolTip="Delete"/>
             </Button>
-            <Button>
-                <Image Source="images/copy.png" Width="80" ToolTip="Copy" />
+            <Button Command="Copy">
+                <Image Source="images/copy.png" Width="80" ToolTip="Copy"/>
             </Button>
-            <Button>
-                <Image Source="images/paste.png" Width="80" ToolTip="Paste" />
+            <Button Command="Paste">
+                <Image Source="images/paste.png" Width="80" ToolTip="Paste"/>
             </Button>
         </StackPanel>
 
@@ -54,10 +55,13 @@
                 <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
 
-            <TextBox Margin="10" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible"/>
+            <TextBox Name="inputTextBox" Margin="10" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible"
+                     FontSize="{Binding ElementName=fontSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}"/>
 
             <DockPanel Grid.Row="1">
-                <Button Content="OK" DockPanel.Dock="Bottom" Width="50" Style="{x:Null}"/>
+                <Label Content="Розмір шрифту:" Margin="10, 0"/>
+                <Slider Name="fontSlider" Margin="4" Minimum="12" Maximum="100" MinWidth="100" ></Slider>
+                <Button Content="OK" DockPanel.Dock="Bottom" Width="50" Style="{x:Null}" Command="Save"/>
                 <!--при VerticalAlignment="Bottom" кнопка притискається до нижньої частини без розтягування навіть без автоматичного визначення висоти рядка-->
             </DockPanel>
         </Grid>
