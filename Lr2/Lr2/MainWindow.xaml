@@ -7,16 +7,30 @@
         mc:Ignorable="d"
         Title="TextEditor" Height="450" Width="800" MinWidth="350" MinHeight="300">
 
-    <!--ЗАВДАННЯ 2.  Розробити у WPF інтерфейс текстового редактора -->
-    
-    <!--ShowGridLines="True"-->
-    <Grid >
+    <!-- Завдання 3. Розробити дизайн програми із застосуванням пензлів, ресурсів, стилів, тригерів -->
+
+    <Window.Resources>
+        <LinearGradientBrush x:Key="LinearPanelBrush">
+            <GradientStop Color="Yellow" Offset="0"></GradientStop>
+            <GradientStop Color="#FF02FFFE" Offset="0.5"></GradientStop>
+            <GradientStop Color="Yellow" Offset="0.8"></GradientStop>
+        </LinearGradientBrush>
+
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="5"></Setter>
+            <Setter Property="Background" Value="Transparent"></Setter>
+            <Setter Property="BorderBrush" Value="White"></Setter>
+        </Style>
+    </Window.Resources>
+
+
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition ></RowDefinition>
         </Grid.RowDefinitions>
 
-        <StackPanel Orientation="Horizontal">
+        <StackPanel Orientation="Horizontal" Background="{StaticResource LinearPanelBrush}">
             <Button>
                 <Image Source="images/open.png" Width="80" ToolTip="Open" />
             </Button>
@@ -32,9 +46,8 @@
         </StackPanel>
 
         <Border Grid.Row="0" BorderBrush="#FFCBBEBE" BorderThickness="2" CornerRadius="10"></Border>
-        <Border Grid.Row="1" BorderBrush="#FFCBBEBE" BorderThickness="2" CornerRadius="10"></Border>
+        <Border Grid.Row="1" BorderBrush="#FFCBBEBE" BorderThickness="2" CornerRadius="10" Background="{StaticResource LinearPanelBrush}"></Border>
 
-        <!--ShowGridLines="True"-->
         <Grid Grid.Row="1"  Margin="20">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
@@ -44,7 +57,7 @@
             <TextBox Margin="10" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible"/>
 
             <DockPanel Grid.Row="1">
-                <Button Content="OK" DockPanel.Dock="Bottom" Width="50"/>
+                <Button Content="OK" DockPanel.Dock="Bottom" Width="50" Style="{x:Null}"/>
                 <!--при VerticalAlignment="Bottom" кнопка притискається до нижньої частини без розтягування навіть без автоматичного визначення висоти рядка-->
             </DockPanel>
         </Grid>
