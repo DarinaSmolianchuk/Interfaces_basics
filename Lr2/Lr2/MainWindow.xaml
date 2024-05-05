@@ -10,11 +10,17 @@
     <!-- Завдання 4. Виконати прив'язку команд та елементів -->
 
     <Window.Resources>
-        <LinearGradientBrush x:Key="LinearPanelBrush">
+        <LinearGradientBrush x:Key="LinearPanelBrush" StartPoint="0,0" EndPoint="1,1">
             <GradientStop Color="Yellow" Offset="0"></GradientStop>
             <GradientStop Color="#FF02FFFE" Offset="0.5"></GradientStop>
             <GradientStop Color="Yellow" Offset="0.8"></GradientStop>
         </LinearGradientBrush>
+    <!--<Window.Resources>
+        <LinearGradientBrush x:Key="LinearPanelBrush" StartPoint="-0.2,-1" EndPoint="0.8,3">
+            <GradientStop Color="Yellow" Offset="0.3"></GradientStop>
+            <GradientStop Color="#FF02FFFE" Offset="0.4"></GradientStop>
+            <GradientStop Color="Red" Offset="0.7"></GradientStop>
+        </LinearGradientBrush>-->
 
         <Style TargetType="Button">
             <Setter Property="Margin" Value="5"></Setter>
@@ -24,14 +30,14 @@
     </Window.Resources>
 
 
-    <Grid>
+    <Grid Background="{StaticResource LinearPanelBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition ></RowDefinition>
         </Grid.RowDefinitions>
 
-        <StackPanel Orientation="Horizontal" Background="{StaticResource LinearPanelBrush}"
-                    FocusManager.IsFocusScope="True">
+        <StackPanel Orientation="Horizontal" 
+                    FocusManager.IsFocusScope="True"><!--Background="{StaticResource LinearPanelBrush}"-->
             <Button Command="Open">
                 <Image Source="images/open.png" Width="80" ToolTip="Open" />
             </Button>
@@ -47,8 +53,8 @@
         </StackPanel>
 
         <Border Grid.Row="0" BorderBrush="#FFCBBEBE" BorderThickness="2" CornerRadius="10"></Border>
-        <Border Grid.Row="1" BorderBrush="#FFCBBEBE" BorderThickness="2" CornerRadius="10" Background="{StaticResource LinearPanelBrush}"></Border>
-
+        <Border Grid.Row="1" BorderBrush="#FFCBBEBE" BorderThickness="2" CornerRadius="10" ></Border>
+<!--Background="{StaticResource LinearPanelBrush}"-->
         <Grid Grid.Row="1"  Margin="20">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
