@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Lr4.Properties
+namespace Lab4.Properties
 {
 
 
