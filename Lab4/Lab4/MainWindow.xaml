@@ -34,11 +34,11 @@
         </Border>
 
         <ToolBar DockPanel.Dock="Top" Height="30">
-            <Button Content="Створити" Margin="10,0"/>
+            <Button Content="Створити" Margin="10,0" Click="NewClick"/>
             <Separator/>
-            <Button Content="Оновити" Margin="10,0"/>
+            <Button Content="Оновити" Name="UpdateButton" Margin="10,0" Click="UpdateClick"/>
             <Separator/>
-            <Button Content="Видалити" Margin="10,0"/>
+            <Button Content="Видалити" Name="DeleteButton" Margin="10,0" Click="DeleteClick"/>
         </ToolBar>
 
         <Grid DataContext="{Binding ElementName=list, Path=SelectedItem}">
@@ -60,19 +60,19 @@
             <ListBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin = "0,0,0,3" ScrollViewer.VerticalScrollBarVisibility="Auto" Name="list" ItemsSource="{Binding}" DisplayMemberPath="FullName" />
 
             <TextBlock Grid.Row="2">ID:</TextBlock>
-            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Path=Id, Mode=OneWay}" Focusable="False"/>
+            <TextBox Name="IdBlock" Grid.Row="2" Grid.Column="1" Text="{Binding Path=Id, Mode=OneWay}" Focusable="False"/>
 
             <TextBlock Grid.Row="3">ПІБ:</TextBlock>
-            <TextBox Grid.Row="3" Grid.Column="2" Text="{Binding Path=FullName, Mode=OneWay}" Focusable="True" />
+            <TextBox Name="FullNameBlock" Grid.Row="3" Grid.Column="2" Text="{Binding Path=FullName, Mode=OneWay}" Focusable="True" />
 
             <TextBlock Grid.Row="4">Підрозділ:</TextBlock>
-            <TextBox Grid.Row="4" Grid.Column="2" Text="{Binding Path=Unit, Mode=OneWay}" Focusable="True" />
+            <TextBox Name="UnitBlock" Grid.Row="4" Grid.Column="2" Text="{Binding Path=Unit, Mode=OneWay}" Focusable="True" />
 
             <TextBlock Grid.Row="5">Посада:</TextBlock>
-            <TextBox Grid.Row="5" Grid.Column="2" Text="{Binding Path=Position, Mode=OneWay}" Focusable="True" />
+            <TextBox Name="PositionBlock" Grid.Row="5" Grid.Column="2" Text="{Binding Path=Position, Mode=OneWay}" Focusable="True" />
 
             <TextBlock Grid.Row="6">Телефон:</TextBlock>
-            <toolkit:MaskedTextBox Grid.Row="6" Grid.Column="2" Text="{Binding Path=PhoneNumber, Mode=OneWay}" Focusable="True" Mask="+380 (00) 000 00 00"/>
+            <TextBox Name="PhoneNumberBlock" Grid.Row="6" Grid.Column="2" Text="{Binding Path=PhoneNumber, Mode=OneWay}" Focusable="True"/>
         </Grid>
     </DockPanel>
 </Window>
