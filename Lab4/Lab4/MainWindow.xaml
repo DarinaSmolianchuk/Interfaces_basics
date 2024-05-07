@@ -5,8 +5,40 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lab4"
         mc:Ignorable="d"
+        Loaded="Window_Loaded"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+    
+    <Grid DataContext="{Binding ElementName=list, Path=SelectedItem}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <ListBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin = "0,0,0,3" ScrollViewer.VerticalScrollBarVisibility="Auto" Name="list" ItemsSource="{Binding}" DisplayMemberPath="FullName" />
+
+        <TextBlock Grid.Row="1" Margin="5">ID:</TextBlock>
+        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Path=Id, Mode=OneWay}" Focusable="False"/>
+
+        <TextBlock Grid.Row="2" Margin="5">ПІБ:</TextBlock>
+        <TextBox Grid.Row="2" Grid.Column="2" Text="{Binding Path=FullName, Mode=OneWay}" Focusable="True" />
+
+        <TextBlock Grid.Row="3" Margin="5">Підрозділ:</TextBlock>
+        <TextBox Grid.Row="3" Grid.Column="2" Text="{Binding Path=Unit, Mode=OneWay}" Focusable="True" />
+
+        <TextBlock Grid.Row="4" Margin="5">Посада:</TextBlock>
+        <TextBox Grid.Row="4" Grid.Column="2" Text="{Binding Path=Position, Mode=OneWay}" Focusable="True" />
+
+        <TextBlock Grid.Row="5" Margin="5">Телефон:</TextBlock>
+        <TextBox Grid.Row="5" Grid.Column="2" Text="{Binding Path=PhoneNumber, Mode=OneWay}" Focusable="True"/>
     </Grid>
+
 </Window>
