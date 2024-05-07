@@ -6,39 +6,72 @@
         xmlns:local="clr-namespace:Lab4"
         mc:Ignorable="d"
         Loaded="Window_Loaded"
-        Title="MainWindow" Height="450" Width="800">
-    
-    <Grid DataContext="{Binding ElementName=list, Path=SelectedItem}">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
+        Title="Employees" Height="450" Width="800">
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Background" Value="#FFC9D9FD"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Padding" Value="5"/>
+        </Style>
 
-        <ListBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin = "0,0,0,3" ScrollViewer.VerticalScrollBarVisibility="Auto" Name="list" ItemsSource="{Binding}" DisplayMemberPath="FullName" />
+        <Style TargetType="Border">
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Background" Value="#FFC9D9FD"/>
+        </Style>
 
-        <TextBlock Grid.Row="1" Margin="5">ID:</TextBlock>
-        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Path=Id, Mode=OneWay}" Focusable="False"/>
+        <Style TargetType="TextBox">
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Padding" Value="5"/>
+        </Style>
+    </Window.Resources>
 
-        <TextBlock Grid.Row="2" Margin="5">ПІБ:</TextBlock>
-        <TextBox Grid.Row="2" Grid.Column="2" Text="{Binding Path=FullName, Mode=OneWay}" Focusable="True" />
+    <DockPanel>
+        <Border DockPanel.Dock="Top">
+            <TextBlock FontSize="40" HorizontalAlignment="Center" Padding="0, 10">Співробітники</TextBlock>
+        </Border>
 
-        <TextBlock Grid.Row="3" Margin="5">Підрозділ:</TextBlock>
-        <TextBox Grid.Row="3" Grid.Column="2" Text="{Binding Path=Unit, Mode=OneWay}" Focusable="True" />
+        <ToolBar DockPanel.Dock="Top" Height="30">
+            <Button Content="Створити" Margin="10,0"/>
+            <Separator/>
+            <Button Content="Оновити" Margin="10,0"/>
+            <Separator/>
+            <Button Content="Видалити" Margin="10,0"/>
+        </ToolBar>
 
-        <TextBlock Grid.Row="4" Margin="5">Посада:</TextBlock>
-        <TextBox Grid.Row="4" Grid.Column="2" Text="{Binding Path=Position, Mode=OneWay}" Focusable="True" />
+        <Grid DataContext="{Binding ElementName=list, Path=SelectedItem}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="5" Margin="5">Телефон:</TextBlock>
-        <TextBox Grid.Row="5" Grid.Column="2" Text="{Binding Path=PhoneNumber, Mode=OneWay}" Focusable="True"/>
-    </Grid>
+            <ListBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin = "0,0,0,3" ScrollViewer.VerticalScrollBarVisibility="Auto" Name="list" ItemsSource="{Binding}" DisplayMemberPath="FullName" />
 
+            <TextBlock Grid.Row="2">ID:</TextBlock>
+            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Path=Id, Mode=OneWay}" Focusable="False"/>
+
+            <TextBlock Grid.Row="3">ПІБ:</TextBlock>
+            <TextBox Grid.Row="3" Grid.Column="2" Text="{Binding Path=FullName, Mode=OneWay}" Focusable="True" />
+
+            <TextBlock Grid.Row="4">Підрозділ:</TextBlock>
+            <TextBox Grid.Row="4" Grid.Column="2" Text="{Binding Path=Unit, Mode=OneWay}" Focusable="True" />
+
+            <TextBlock Grid.Row="5">Посада:</TextBlock>
+            <TextBox Grid.Row="5" Grid.Column="2" Text="{Binding Path=Position, Mode=OneWay}" Focusable="True" />
+
+            <TextBlock Grid.Row="6">Телефон:</TextBlock>
+            <TextBox Grid.Row="6" Grid.Column="2" Text="{Binding Path=PhoneNumber, Mode=OneWay}" Focusable="True"/>
+        </Grid>
+    </DockPanel>
 </Window>
