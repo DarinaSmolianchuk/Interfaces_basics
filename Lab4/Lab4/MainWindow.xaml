@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lab4"
+        xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         Loaded="Window_Loaded"
         Title="Employees" Height="450" Width="800">
@@ -71,7 +72,7 @@
             <TextBox Grid.Row="5" Grid.Column="2" Text="{Binding Path=Position, Mode=OneWay}" Focusable="True" />
 
             <TextBlock Grid.Row="6">Телефон:</TextBlock>
-            <TextBox Grid.Row="6" Grid.Column="2" Text="{Binding Path=PhoneNumber, Mode=OneWay}" Focusable="True"/>
+            <toolkit:MaskedTextBox Grid.Row="6" Grid.Column="2" Text="{Binding Path=PhoneNumber, Mode=OneWay}" Focusable="True" Mask="+380 (00) 000 00 00"/>
         </Grid>
     </DockPanel>
 </Window>

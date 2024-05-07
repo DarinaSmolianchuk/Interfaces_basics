@@ -17,14 +17,3 @@ namespace Lab4
         }
     }
 }
-        //    var ShowInf = DataBase.loadDataTable();
-            
-
-
-        //}
-        //private void Window_Loaded(object sender, RoutedEventArgs e)
-        //{
-        //    list.SelectedIndex = 0;
-        //    list.Focus();
-        //    list.DataContext = DataBase.loadDataTable();
-        //}
