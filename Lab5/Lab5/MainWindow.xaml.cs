@@ -44,7 +44,6 @@ namespace Lab5
             EmloyeesAndUnitsDir.ItemsSource = query.ToList();
         }
 
-        //Where
         private void FindByUnitName(object sender, RoutedEventArgs e)
         {
             var query = from emp in context.Employees
@@ -65,7 +64,6 @@ namespace Lab5
             UnitCountBlock.Text = employeeCount.ToString();
         }
 
-        //
         private void FindByPosition(object sender, RoutedEventArgs e)
         {
             var query = from emp in context.Employees
