@@ -62,6 +62,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Employees.cs">
+      <DependentUpon>EmployeesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeesModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EmployeesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Units.cs">
+      <DependentUpon>EmployeesModel.tt</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -123,6 +134,12 @@
     <Content Include="EmployeesModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>EmployeesModel.Context.cs</LastGenOutput>
+      <DependentUpon>EmployeesModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="EmployeesModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>EmployeesModel.edmx</DependentUpon>
+      <LastGenOutput>EmployeesModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>

@@ -5,8 +5,54 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lab5"
         mc:Ignorable="d"
+        Loaded="Window_Loaded"
         Title="MainWindow" Height="450" Width="800">
+
+
     <Grid>
-        
+        <TabControl>
+            <TabItem Header="Employees">
+                <DataGrid Name="EmployeesDir" />
+            </TabItem>
+
+            <TabItem Header="Units">
+                <DataGrid Name="UnitsDir" />
+            </TabItem>
+
+            <TabItem Header="Коротко про співробітників">
+                <DataGrid Name="EmloyeesAndUnitsDir" />
+            </TabItem>
+
+            <TabItem Header="Вибір по назві підрозділу">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock>Назва підрозділу:</TextBlock>
+                        <TextBox Name="UnitBlock"></TextBox>
+                        <Button Click="FindByUnitName">Знайти</Button>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock>В цьому підрозділі:</TextBlock>
+                        <TextBlock Name="UnitCountBlock"></TextBlock>
+                    </StackPanel>
+                    <DataGrid Name="gridByUnitName" />
+                </StackPanel>
+            </TabItem>
+
+            <TabItem Header="Пошук по посаді">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock>Назва посади:</TextBlock>
+                        <TextBox Name="PositionBlock"></TextBox>
+                        <Button Click="FindByPosition">Знайти</Button>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock>На цій посаді:</TextBlock>
+                        <TextBlock Name="PositionCountBlock"></TextBlock>
+                    </StackPanel>
+                    <DataGrid Name="gridByPosition" />
+                </StackPanel>
+            </TabItem>
+
+        </TabControl>
     </Grid>
 </Window>
