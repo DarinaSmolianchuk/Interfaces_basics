@@ -7,51 +7,77 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="PageTable1">
+    
     <Page.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="FontSize" Value="40"/>
             <Setter Property="Margin" Value="20"/>
         </Style>
 
-        <LinearGradientBrush x:Key="linearBackgroung">
-            <GradientStop Color="#FF030040" Offset="0.0"></GradientStop>
-            <GradientStop Color="Black" Offset="1.0"></GradientStop>
-        </LinearGradientBrush>
+        <RadialGradientBrush x:Key="RadialGradient" GradientOrigin="0.5,0.5" >
+            <GradientStop Color="White" Offset="0" />
+            <GradientStop Color="LightGray" Offset="0.25" />
+            <GradientStop Color="Gray" Offset="0.75" />
+            <GradientStop Color="DimGray" Offset="1" />
+        </RadialGradientBrush>
     </Page.Resources>
 
-    <Grid Background="{StaticResource linearBackgroung}">
+    <Page.CommandBindings>
+        <CommandBinding Command="Undo"
+	                    Executed="UndoCommandBinding_Executed"
+        	            CanExecute="UndoCommandBinding_CanExecute" />
+        <CommandBinding Command="New"
+	                    Executed="NewCommandBinding_Executed"
+        	            CanExecute="NewCommandBinding_CanExecute" />
+        <CommandBinding Command="Replace"
+	                    Executed="ReplaceCommandBinding_Executed"
+        	            CanExecute="ReplaceCommandBinding_CanExecute" />
+        <CommandBinding Command="Save"
+	                    Executed="SaveCommandBinding_Executed"
+        	            CanExecute="SaveCommandBinding_CanExecute" />
+        <CommandBinding Command="Find"
+	                    Executed="FindCommandBinding_Executed"
+        	            CanExecute="FindCommandBinding_CanExecute" />
+        <CommandBinding Command="Delete"
+	                    Executed="DeleteCommandBinding_Executed"
+        	            CanExecute="DeleteCommandBinding_CanExecute" />
+    </Page.CommandBindings>
+
+
+    <Grid Background="{StaticResource RadialGradient}">
         <StackPanel Background="Transparent">
             <Menu>
-                <MenuItem Header="Дія" >
-                    <MenuItem Header="Скасувати"/>
+                <MenuItem Header="Дія">
+                    <MenuItem Command="Undo" Header="Скасувати"/>
                     <Separator/>
-                    <MenuItem Header="Створити"/>
-                    <MenuItem Header="Редагувати"/>
-                    <MenuItem Header="Зберегти"/>
-                    <MenuItem Header="Знайти"/>
+                    <MenuItem Command="New" Header="Створити"/>
+                    <MenuItem Command="Replace" Header="Редагувати"/>
+                    <MenuItem Command="Save" Header="Зберегти"/>
+                    <MenuItem Command="Find" Header="Знайти"/>
                     <Separator/>
-                    <MenuItem Header="Видалити"/>
+                    <MenuItem Command="Delete" Header="Видалити"/>
                 </MenuItem>
                 <MenuItem Header="Звіт"></MenuItem>
             </Menu>
+            
             <ToolBar>
-                <Button Height="50">
-                    <Image Source="Скасувати.png"/>
+                <Button Height="50" Name="Скасувати" Command="Undo" ToolTip="Скасувати">
+                    <Image Source="/Images/Скасувати.png"/>
                 </Button>
-                <Button Height="50">
-                    <Image Source="Створити.png"/>
+                <Button Height="50" Name="Створити" Command="New" ToolTip="Створити">
+                    <Image Source="/Images/Створити.png"/>
                 </Button>
-                <Button Height="50">
-                    <Image Source="Редагувати.png"/>
+                <Button Height="50" Name="Редагувати" Command="Replace" ToolTip="Редагувати">
+                    <Image Source="/Images/Редагувати.png"/>
                 </Button>
-                <Button Height="50">
-                    <Image Source="Зберегти.png"/>
+                <Button Height="50" Name="Зберегти" Command="Save" ToolTip="Зберегти">
+                    <Image Source="/Images/Зберегти.png"/>
                 </Button>
-                <Button Height="50">
-                    <Image Source="Знайти.png"/>
+                <Button Height="50" Name="Знайти" Command="Find" ToolTip="Знайти">
+                    <Image Source="/Images/Знайти.png"/>
                 </Button>
-                <Button Height="50">
-                    <Image Source="Видалити.png"/>
+                <Button Height="50" Name="Видалити" Command="Delete" ToolTip="Видалити">
+                    <Image Source="/Images/Видалити.png"/>
                 </Button>
             </ToolBar>
         </StackPanel>
