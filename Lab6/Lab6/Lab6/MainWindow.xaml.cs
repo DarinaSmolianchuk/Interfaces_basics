@@ -153,5 +153,44 @@ namespace Lab6
             DataBaseDir.ItemsSource = null;
             DataBaseDir.ItemsSource = db_calc_history;
         }
+
+        private void FindByMathExpression(object sender, RoutedEventArgs e)
+        {
+            string searchTerm = MathExpressionBlock.Text;
+
+            var foundRecords = from record in context.CalculatorHistory
+                               where record.MathExpression.Contains(searchTerm)
+                               select record;
+
+            db_calc_history.Clear();
+            foreach (var record in foundRecords)
+            {
+                db_calc_history.Add(record);
+            }
+
+            DataBaseDir.ItemsSource = null;
+            DataBaseDir.ItemsSource = db_calc_history;
+        }
+
+        private void FindByResult(object sender, RoutedEventArgs e)
+        {
+
+
+            int searchResult = 0;
+            var foundRecords = from record in context.CalculatorHistory
+                               where record.Result == searchResult
+                               select record;
+
+            db_calc_history.Clear();
+            foreach (var record in foundRecords)
+            {
+                db_calc_history.Add(record);
+            }
+
+            DataBaseDir.ItemsSource = null;
+            DataBaseDir.ItemsSource = db_calc_history;
+        }
+
+
     }
 }

@@ -98,8 +98,23 @@
             
         </TabItem>
             <TabItem Header="DataBase">
-                <DataGrid Name="DataBaseDir" />
-            </TabItem>
+            <StackPanel>
+                <StackPanel Orientation="Vertical" Width="200">
+                    <TextBlock>Пошук за виразом:</TextBlock>
+                    <TextBox Name="MathExpressionBlock"></TextBox>
+                    <Button Click="FindByMathExpression">Знайти</Button>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Width="200" Margin="10">
+                    <TextBlock>Пошук за результатом:</TextBlock>
+                    <TextBox Name="ResultBlock"></TextBox>
+                    <Button Click="FindByResult">Знайти</Button>
+                </StackPanel>
+                
+                <ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="250">
+                    <DataGrid Name="DataBaseDir" Height="Auto"/>
+                </ScrollViewer>
+            </StackPanel>
+        </TabItem>
     </TabControl>
     
 </Window>
