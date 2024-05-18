@@ -75,10 +75,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CalcHistory.Context.tt</DependentUpon>
     </Compile>
+    <Compile Include="CalcHistory.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CalcHistory.tt</DependentUpon>
+    </Compile>
     <Compile Include="CalcHistory.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CalcHistory.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="CalculatorHistory.cs">
+      <DependentUpon>CalcHistory.tt</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -126,6 +134,12 @@
     <Content Include="CalcHistory.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>CalcHistory.Context.cs</LastGenOutput>
+      <DependentUpon>CalcHistory.edmx</DependentUpon>
+    </Content>
+    <Content Include="CalcHistory.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CalcHistory.edmx</DependentUpon>
+      <LastGenOutput>CalcHistory.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>

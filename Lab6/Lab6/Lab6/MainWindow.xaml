@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lab6"
         mc:Ignorable="d"
-                MinHeight="400"
+        Loaded="Window_Loaded"
+        MinHeight="400"
         MinWidth="600"
         Title="Калькулятор" Height="450" Width="800">
 
@@ -37,23 +38,26 @@
         </Style>
     </Window.Resources>
 
-    <Grid x:Name="GridBlock" Background="{StaticResource RadialGradient}">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="2*"></RowDefinition>
-            <RowDefinition Height="1.5*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="2*"></RowDefinition>
-            <RowDefinition Height="3*"></RowDefinition>
-        </Grid.RowDefinitions>
+    <TabControl>
+        <TabItem Header="Calculator">
+            <Grid x:Name="GridBlock" Background="{StaticResource RadialGradient}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                 </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"></RowDefinition>
+                    <RowDefinition Height="1.5*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="2*"></RowDefinition>
+                    <RowDefinition Height="3*"></RowDefinition>
+                 </Grid.RowDefinitions>
+
         <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4">
             <TextBlock TextWrapping="Wrap" VerticalAlignment="Center"  Foreground="WhiteSmoke" FontSize="35" Padding="7" x:Name="calcDataBlock"></TextBlock>
         </ScrollViewer>
@@ -86,8 +90,16 @@
             <TextBlock x:Name="historyBlock" Foreground="WhiteSmoke" TextWrapping="Wrap"/>
         </ScrollViewer>
 
-        <Button Grid.Row="7" Foreground="LightGray" Grid.Column="3" FontSize="20" Command="Delete">
-            <TextBlock Text="Видалити&#x0a;історію" TextAlignment="Center"/>
-        </Button>
-    </Grid>
+                <Button Grid.Row="7" Foreground="LightGray" Grid.Column="3" FontSize="20" Command="Delete">
+                    <TextBlock Text="Видалити&#x0a;історію" TextAlignment="Center"/>
+                </Button>
+            </Grid>
+            
+            
+        </TabItem>
+            <TabItem Header="DataBase">
+                <DataGrid Name="DataBaseDir" />
+            </TabItem>
+    </TabControl>
+    
 </Window>

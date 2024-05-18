@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Windows;
 using System.Windows.Controls;
@@ -9,9 +10,18 @@ namespace Lab6
     public partial class MainWindow : Window
     {
         public static RoutedCommand BackspaceCommand = new RoutedCommand();
+
+        Lab6_DBEntities context;
+        List<CalculatorHistory> db_calc_history;
+
         public MainWindow()
         {
             InitializeComponent();
+
+            context = new Lab6_DBEntities();
+            db_calc_history = new List<CalculatorHistory>();
+
+
             foreach (UIElement uielement in GridBlock.Children)
                 if (uielement is Button)
                     ((Button)uielement).Click += ButtonClick;
@@ -24,7 +34,14 @@ namespace Lab6
             CommandBindings.Add(ReplaceCommand);
         }
 
-        private void ButtonClick(object sender, RoutedEventArgs e)
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            foreach (var emp in context.CalculatorHistory)
+                db_calc_history.Add(emp);
+            DataBaseDir.ItemsSource = db_calc_history;
+        }
+
+            private void ButtonClick(object sender, RoutedEventArgs e)
         {
             string data = null;
             if (((Button)e.OriginalSource).Content is string)
