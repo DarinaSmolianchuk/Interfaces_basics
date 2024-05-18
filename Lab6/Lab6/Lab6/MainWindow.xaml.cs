@@ -70,7 +70,6 @@ namespace Lab6
                 {
                     // Зберігаємо поточний вираз
                     currentExpression = calcDataBlock.Text;
-
                     // Обчислюємо результат
                     int result;
                     try
@@ -82,11 +81,9 @@ namespace Lab6
                         calcDataBlock.Text = "Error";
                         return;
                     }
-
                     // Оновлюємо історію та текстове поле результату
                     historyBlock.Text = historyBlock.Text + calcDataBlock.Text + "=" + result.ToString() + "\n";
                     calcDataBlock.Text = result.ToString();
-
                     // Зберігаємо в базу даних
                     SaveCalculationToDatabase(currentExpression, result);
                 }
@@ -115,7 +112,6 @@ namespace Lab6
         {
             e.CanExecute = !string.IsNullOrEmpty(calcDataBlock.Text);
         }
-
         private void Execute_Backspace(object sender, ExecutedRoutedEventArgs e)
         {
             if (!string.IsNullOrEmpty(calcDataBlock.Text))
@@ -135,7 +131,6 @@ namespace Lab6
                 e.CanExecute = true;
             };
         }
-
         void Execute_Delete(object sender, ExecutedRoutedEventArgs e)
         {
             historyBlock.Text = "";
@@ -143,16 +138,17 @@ namespace Lab6
 
         private void SaveCalculationToDatabase(string expression, int result)
         {
+            DateTime currentTime = DateTime.Now;
             CalculatorHistory newRecord = new CalculatorHistory
             {
                 MathExpression = expression,
-                Result = result
+                Result = result,
+                DateTime = currentTime
             };
-
+            // Додати запис до контексту та зберегти зміни
             context.CalculatorHistory.Add(newRecord);
             context.SaveChanges();
-
-            // Оновлюємо локальну колекцію та відображення в DataGrid
+            // Оновити локальну колекцію та відображення в DataGrid
             db_calc_history.Add(newRecord);
             DataBaseDir.ItemsSource = null;
             DataBaseDir.ItemsSource = db_calc_history;
