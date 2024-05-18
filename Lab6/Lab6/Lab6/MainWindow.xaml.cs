@@ -174,9 +174,12 @@ namespace Lab6
 
         private void FindByResult(object sender, RoutedEventArgs e)
         {
+            int searchResult;
+            if (!int.TryParse(ResultBlock.Text, out searchResult))
+            {
+                return;
+            }
 
-
-            int searchResult = 0;
             var foundRecords = from record in context.CalculatorHistory
                                where record.Result == searchResult
                                select record;
