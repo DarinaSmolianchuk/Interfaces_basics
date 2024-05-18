@@ -32,6 +32,13 @@ namespace Lab3
             {
                 calcDataBlock.Text = "";
             }
+            //else if (data == "вид")
+            //{
+            //    if (!string.IsNullOrEmpty(calcDataBlock.Text))
+            //    {
+            //        calcDataBlock.Text = calcDataBlock.Text.Substring(0, calcDataBlock.Text.Length - 1);
+            //    }
+            //}
             else if (data == "=")
             {
                 if (calcDataBlock.Text != "" && !calcDataBlock.Text.EndsWith("/")
@@ -63,6 +70,13 @@ namespace Lab3
             }
         }
 
+        //private void Backspace_Click(object sender, RoutedEventArgs e)
+        //{
+        //    if (!string.IsNullOrEmpty(calcDataBlock.Text))
+        //    {
+        //        calcDataBlock.Text = calcDataBlock.Text.Substring(0, calcDataBlock.Text.Length - 1);
+        //    }
+        //}
         void canExecute_Save(object sender, CanExecuteRoutedEventArgs e)
         {
             if (historyBlock.Text.Trim().Length == 0)

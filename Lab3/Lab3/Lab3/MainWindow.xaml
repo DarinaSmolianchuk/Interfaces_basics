@@ -6,17 +6,16 @@
         xmlns:local="clr-namespace:Lab3"
         mc:Ignorable="d"
         MinHeight="400"
-        MinWidth="550"
+        MinWidth="600"
         Title="Калькулятор" Height="450" Width="800">
 
     <Window.Resources>
-        <RadialGradientBrush x:Key="RadialGradient" GradientOrigin="0.5,0.5" >
+        <RadialGradientBrush x:Key="RadialGradient" GradientOrigin="0.5,0.5">
             <GradientStop Color="White" Offset="0" />
             <GradientStop Color="LightGray" Offset="0.25" />
             <GradientStop Color="Gray" Offset="0.75" />
             <GradientStop Color="DimGray" Offset="1" />
         </RadialGradientBrush>
-
 
         <Style TargetType="Button">
             <Setter Property="Background" Value="Transparent"/>
@@ -36,8 +35,6 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
-
-
     </Window.Resources>
 
     <Grid x:Name="GridBlock" Background="{StaticResource RadialGradient}">
@@ -49,41 +46,48 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="1.5*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="2*"></RowDefinition>
-            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="3*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <TextBlock VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Foreground="WhiteSmoke" FontSize="35" Padding="7" x:Name="calcDataBlock"></TextBlock>
-        <Button FontSize="25" Grid.Row="0" Grid.Column="3">C</Button>
-        <Button FontSize="25" Grid.Row="3" Grid.Column="2">1</Button>
-        <Button FontSize="25" Grid.Row="3" Grid.Column="1">2</Button>
-        <Button FontSize="25" Grid.Row="3" Grid.Column="0">3</Button>
-        <Button FontSize="25" Grid.Row="2" Grid.Column="2">4</Button>
-        <Button FontSize="25" Grid.Row="2" Grid.Column="1">5</Button>
-        <Button FontSize="25" Grid.Row="2" Grid.Column="0">6</Button>
-        <Button FontSize="25" Grid.Row="1" Grid.Column="2">7</Button>
-        <Button FontSize="25" Grid.Row="1" Grid.Column="1">8</Button>
-        <Button FontSize="25" Grid.Row="1" Grid.Column="0">9</Button>
-        <Button FontSize="25" Grid.Row="4" Grid.Column="0">0</Button>
-        <Button FontSize="25" Grid.Row="4" Grid.Column="2">.</Button>
-        <Button FontSize="25" Grid.Row="4" Grid.Column="1">=</Button>
-        <Button FontSize="25" Grid.Row="1" Grid.Column="3">*</Button>
-        <Button FontSize="25" Grid.Row="2" Grid.Column="3">/</Button>
-        <Button FontSize="25" Grid.Row="3" Grid.Column="3">+</Button>
-        <Button FontSize="25" Grid.Row="4" Grid.Column="3">-</Button>
-        <ScrollViewer Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="2" VerticalScrollBarVisibility="Auto">
-            <TextBlock FontSize="30" Margin="15">
-                <Run FontSize="35" Foreground="LightGray">Історія:</Run>
-                <LineBreak/>
-                <Run x:Name="historyBlock" Foreground="WhiteSmoke"></Run>
-            </TextBlock>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4">
+            <TextBlock TextWrapping="Wrap" VerticalAlignment="Center"  Foreground="WhiteSmoke" FontSize="35" Padding="7" x:Name="calcDataBlock"></TextBlock>
         </ScrollViewer>
-        <Button Grid.Row="5" Foreground="LightGray" Grid.Column="3" Padding="50" FontSize="20" Command="Save">Завантажити</Button>
-        <Button Grid.Row="6" Foreground="LightGray" Grid.Column="3" Padding="50" FontSize="20" Command="Delete">Очистити</Button>
-    </Grid>
+            
+        <Button FontSize="25" Grid.Row="1" Grid.Column="2">C</Button>
+        <Button FontSize="25" Grid.Row="1" Grid.Column="3"> <!--Name="btnBackspace" Click="Backspace_Click"-->
+            <Image Source="/Images/delete-315.png" Height="50"/>
+        </Button>
+        <Button FontSize="25" Grid.Row="4" Grid.Column="0">1</Button>
+        <Button FontSize="25" Grid.Row="4" Grid.Column="1">2</Button>
+        <Button FontSize="25" Grid.Row="4" Grid.Column="2">3</Button>
+        <Button FontSize="25" Grid.Row="3" Grid.Column="0">4</Button>
+        <Button FontSize="25" Grid.Row="3" Grid.Column="1">5</Button>
+        <Button FontSize="25" Grid.Row="3" Grid.Column="2">6</Button>
+        <Button FontSize="25" Grid.Row="2" Grid.Column="0">7</Button>
+        <Button FontSize="25" Grid.Row="2" Grid.Column="1">8</Button>
+        <Button FontSize="25" Grid.Row="2" Grid.Column="2">9</Button>
+        <Button FontSize="25" Grid.Row="5" Grid.Column="0">0</Button>
+        <Button FontSize="25" Grid.Row="5" Grid.Column="1">.</Button>
+        <Button FontSize="25" Grid.Row="5" Grid.Column="2">=</Button>
+        <Button FontSize="25" Grid.Row="2" Grid.Column="3">*</Button>
+        <Button FontSize="25" Grid.Row="3" Grid.Column="3">/</Button>
+        <Button FontSize="25" Grid.Row="4" Grid.Column="3">+</Button>
+        <Button FontSize="25" Grid.Row="5" Grid.Column="3">-</Button>
 
+        <TextBlock FontSize="30" Foreground="LightGray" Margin="30,20,0,0" Grid.Row="6" Grid.Column="0">
+            Історія:
+        </TextBlock>
+        <ScrollViewer Margin="30,0,0,10" FontSize="25" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="3" VerticalScrollBarVisibility="Auto">
+            <TextBlock x:Name="historyBlock" Foreground="WhiteSmoke" TextWrapping="Wrap"/>
+        </ScrollViewer>
+
+        <Button Grid.Row="6" Foreground="LightGray" Grid.Column="3" Padding="50" FontSize="20" Command="Save">Завантажити</Button>
+        <Button Grid.Row="7" Foreground="LightGray" Grid.Column="3" Padding="50" FontSize="20" Command="Delete">Очистити</Button>
+    </Grid>
 </Window>
