@@ -1,9 +1,5 @@
-﻿using Microsoft.Win32;
-using System;
+﻿using System;
 using System.Data;
-using System.IO;
-using System.Reflection;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -19,35 +15,18 @@ namespace Lab3
             InitializeComponent();
             foreach (UIElement uielement in GridBlock.Children)
                 if (uielement is Button)
-                    ((Button)uielement).Click += buttonClick;
+                    ((Button)uielement).Click += ButtonClick;
 
             btnBackspace.Command = BackspaceCommand;
-            CommandBinding backspaceCommandBinding = new CommandBinding(BackspaceCommand, ExecuteBackspace, CanExecuteBackspace);
-            CommandBindings.Add(backspaceCommandBinding);
+            CommandBinding BackspaceCommandBinding = new CommandBinding(BackspaceCommand, Execute_Backspace, CanExecute_Backspace);
+            CommandBindings.Add(BackspaceCommandBinding);
 
-            
-            CommandBinding replaceCommand = new CommandBinding(ApplicationCommands.Delete, execute_Delete, canExecute_Delete);
-            CommandBindings.Add(replaceCommand);
+            CommandBinding ReplaceCommand = new CommandBinding(ApplicationCommands.Delete, Execute_Delete, CanExecute_Delete);
+            CommandBindings.Add(ReplaceCommand);
         }
 
-        private void buttonClick(object sender, RoutedEventArgs e)
+        private void ButtonClick(object sender, RoutedEventArgs e)
         {
-            //string data = null;
-            //if (((Button)e.OriginalSource).Content is string)
-            //{
-            //    data = (string)((Button)e.OriginalSource).Content;
-            //}
-            //else if (((Button)e.OriginalSource).Content is Image)
-            //{
-            //    if (((Button)e.OriginalSource).Name == "btnBackspace")
-            //    {
-            //        if (!string.IsNullOrEmpty(calcDataBlock.Text))
-            //        {
-            //            calcDataBlock.Text = calcDataBlock.Text.Substring(0, calcDataBlock.Text.Length - 1);
-            //        }
-            //        return;
-            //    }
-            //}
             string data = null;
             if (((Button)e.OriginalSource).Content is string)
             {
@@ -55,8 +34,6 @@ namespace Lab3
             }
             else if (((Button)e.OriginalSource).Content is Image)
             {
-                // Handle the case where the content is an Image.
-                // For example, you could check the Name of the button:
                 if (((Button)e.OriginalSource).Name == "btnBackspace")
                 {
                     return;
@@ -98,22 +75,19 @@ namespace Lab3
             }
         }
 
-        private void CanExecuteBackspace(object sender, CanExecuteRoutedEventArgs e)
+        private void CanExecute_Backspace(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = !string.IsNullOrEmpty(calcDataBlock.Text);
         }
 
-        private void ExecuteBackspace(object sender, ExecutedRoutedEventArgs e)
+        private void Execute_Backspace(object sender, ExecutedRoutedEventArgs e)
         {
             if (!string.IsNullOrEmpty(calcDataBlock.Text))
             {
                 calcDataBlock.Text = calcDataBlock.Text.Substring(0, calcDataBlock.Text.Length - 1);
             }
         }
-
-
-
-        void canExecute_Delete(object sender, CanExecuteRoutedEventArgs e)
+        void CanExecute_Delete(object sender, CanExecuteRoutedEventArgs e)
         {
             if (historyBlock.Text.Trim().Length == 0)
             {
@@ -124,7 +98,7 @@ namespace Lab3
                 e.CanExecute = true;
             };
         }
-        void execute_Delete(object sender, ExecutedRoutedEventArgs e)
+        void Execute_Delete(object sender, ExecutedRoutedEventArgs e)
         {
             historyBlock.Text = "";
         }

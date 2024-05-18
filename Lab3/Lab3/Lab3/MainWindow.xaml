@@ -87,6 +87,8 @@
             <TextBlock x:Name="historyBlock" Foreground="WhiteSmoke" TextWrapping="Wrap"/>
         </ScrollViewer>
 
-        <Button Grid.Row="7" Foreground="LightGray" Grid.Column="3" Padding="50" FontSize="20" Command="Delete">Очистити</Button>
+        <Button Grid.Row="7" Foreground="LightGray" Grid.Column="3" FontSize="20" Command="Delete">
+            <TextBlock Text="Видалити&#x0a;історію" TextAlignment="Center"/>
+        </Button>
     </Grid>
 </Window>
