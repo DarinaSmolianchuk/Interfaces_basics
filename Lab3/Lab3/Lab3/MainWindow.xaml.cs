@@ -12,6 +12,8 @@ namespace Lab3
 {
     public partial class MainWindow : Window
     {
+        public static RoutedCommand BackspaceCommand = new RoutedCommand();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -19,26 +21,52 @@ namespace Lab3
                 if (uielement is Button)
                     ((Button)uielement).Click += buttonClick;
 
-            CommandBinding saveCommand = new CommandBinding(ApplicationCommands.Save, execute_Save, canExecute_Save);
-            CommandBindings.Add(saveCommand);
+            btnBackspace.Command = BackspaceCommand;
+            CommandBinding backspaceCommandBinding = new CommandBinding(BackspaceCommand, ExecuteBackspace, CanExecuteBackspace);
+            CommandBindings.Add(backspaceCommandBinding);
+
+            
             CommandBinding replaceCommand = new CommandBinding(ApplicationCommands.Delete, execute_Delete, canExecute_Delete);
             CommandBindings.Add(replaceCommand);
         }
 
         private void buttonClick(object sender, RoutedEventArgs e)
         {
-            string data = (string)((Button)e.OriginalSource).Content;
+            //string data = null;
+            //if (((Button)e.OriginalSource).Content is string)
+            //{
+            //    data = (string)((Button)e.OriginalSource).Content;
+            //}
+            //else if (((Button)e.OriginalSource).Content is Image)
+            //{
+            //    if (((Button)e.OriginalSource).Name == "btnBackspace")
+            //    {
+            //        if (!string.IsNullOrEmpty(calcDataBlock.Text))
+            //        {
+            //            calcDataBlock.Text = calcDataBlock.Text.Substring(0, calcDataBlock.Text.Length - 1);
+            //        }
+            //        return;
+            //    }
+            //}
+            string data = null;
+            if (((Button)e.OriginalSource).Content is string)
+            {
+                data = (string)((Button)e.OriginalSource).Content;
+            }
+            else if (((Button)e.OriginalSource).Content is Image)
+            {
+                // Handle the case where the content is an Image.
+                // For example, you could check the Name of the button:
+                if (((Button)e.OriginalSource).Name == "btnBackspace")
+                {
+                    return;
+                }
+            }
+
             if (data == "C")
             {
                 calcDataBlock.Text = "";
             }
-            //else if (data == "вид")
-            //{
-            //    if (!string.IsNullOrEmpty(calcDataBlock.Text))
-            //    {
-            //        calcDataBlock.Text = calcDataBlock.Text.Substring(0, calcDataBlock.Text.Length - 1);
-            //    }
-            //}
             else if (data == "=")
             {
                 if (calcDataBlock.Text != "" && !calcDataBlock.Text.EndsWith("/")
@@ -70,37 +98,20 @@ namespace Lab3
             }
         }
 
-        //private void Backspace_Click(object sender, RoutedEventArgs e)
-        //{
-        //    if (!string.IsNullOrEmpty(calcDataBlock.Text))
-        //    {
-        //        calcDataBlock.Text = calcDataBlock.Text.Substring(0, calcDataBlock.Text.Length - 1);
-        //    }
-        //}
-        void canExecute_Save(object sender, CanExecuteRoutedEventArgs e)
+        private void CanExecuteBackspace(object sender, CanExecuteRoutedEventArgs e)
         {
-            if (historyBlock.Text.Trim().Length == 0)
-            {
-                e.CanExecute = false;
-            }
-            else
-            {
-                e.CanExecute = true;
-            };
+            e.CanExecute = !string.IsNullOrEmpty(calcDataBlock.Text);
         }
-        void execute_Save(object sender, ExecutedRoutedEventArgs e)
+
+        private void ExecuteBackspace(object sender, ExecutedRoutedEventArgs e)
         {
-            SaveFileDialog save = new SaveFileDialog();
-            save.InitialDirectory = Assembly.GetEntryAssembly().Location;
-            save.Filter = "Text files (*.txt)|*.txt";
-            if (save.ShowDialog() == true)
+            if (!string.IsNullOrEmpty(calcDataBlock.Text))
             {
-                string data = historyBlock.Text.Trim();
-                byte[] info = new UTF8Encoding(true).GetBytes(data);
-                FileStream stream = (FileStream)save.OpenFile();
-                stream.Write(info, 0, info.Length);
+                calcDataBlock.Text = calcDataBlock.Text.Substring(0, calcDataBlock.Text.Length - 1);
             }
         }
+
+
 
         void canExecute_Delete(object sender, CanExecuteRoutedEventArgs e)
         {

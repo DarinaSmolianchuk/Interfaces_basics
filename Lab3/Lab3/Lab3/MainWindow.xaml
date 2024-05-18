@@ -60,7 +60,7 @@
         </ScrollViewer>
             
         <Button FontSize="25" Grid.Row="1" Grid.Column="2">C</Button>
-        <Button FontSize="25" Grid.Row="1" Grid.Column="3"> <!--Name="btnBackspace" Click="Backspace_Click"-->
+        <Button FontSize="25" Grid.Row="1" Grid.Column="3" Name="btnBackspace">
             <Image Source="/Images/delete-315.png" Height="50"/>
         </Button>
         <Button FontSize="25" Grid.Row="4" Grid.Column="0">1</Button>
@@ -87,7 +87,6 @@
             <TextBlock x:Name="historyBlock" Foreground="WhiteSmoke" TextWrapping="Wrap"/>
         </ScrollViewer>
 
-        <Button Grid.Row="6" Foreground="LightGray" Grid.Column="3" Padding="50" FontSize="20" Command="Save">Завантажити</Button>
         <Button Grid.Row="7" Foreground="LightGray" Grid.Column="3" Padding="50" FontSize="20" Command="Delete">Очистити</Button>
     </Grid>
 </Window>
