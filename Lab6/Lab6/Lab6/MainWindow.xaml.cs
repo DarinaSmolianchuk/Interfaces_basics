@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -14,13 +15,14 @@ namespace Lab6
         Lab6_DBEntities context;
         List<CalculatorHistory> db_calc_history;
 
+        private string currentExpression = string.Empty;
+
         public MainWindow()
         {
             InitializeComponent();
 
             context = new Lab6_DBEntities();
             db_calc_history = new List<CalculatorHistory>();
-
 
             foreach (UIElement uielement in GridBlock.Children)
                 if (uielement is Button)
@@ -41,7 +43,7 @@ namespace Lab6
             DataBaseDir.ItemsSource = db_calc_history;
         }
 
-            private void ButtonClick(object sender, RoutedEventArgs e)
+        private void ButtonClick(object sender, RoutedEventArgs e)
         {
             string data = null;
             if (((Button)e.OriginalSource).Content is string)
@@ -66,9 +68,27 @@ namespace Lab6
                     && !calcDataBlock.Text.EndsWith("*") && !calcDataBlock.Text.EndsWith("+")
                     && !calcDataBlock.Text.EndsWith("-") && !calcDataBlock.Text.EndsWith("."))
                 {
-                    double result = Math.Round(Double.Parse(new DataTable().Compute(calcDataBlock.Text, null).ToString()), 6);
-                    historyBlock.Text = historyBlock.Text + calcDataBlock.Text + "=" + result.ToString().Replace(',', '.') + "\n";
-                    calcDataBlock.Text = result.ToString().Replace(',', '.');
+                    // Зберігаємо поточний вираз
+                    currentExpression = calcDataBlock.Text;
+
+                    // Обчислюємо результат
+                    int result;
+                    try
+                    {
+                        result = Convert.ToInt32(new DataTable().Compute(calcDataBlock.Text, null));
+                    }
+                    catch
+                    {
+                        calcDataBlock.Text = "Error";
+                        return;
+                    }
+
+                    // Оновлюємо історію та текстове поле результату
+                    historyBlock.Text = historyBlock.Text + calcDataBlock.Text + "=" + result.ToString() + "\n";
+                    calcDataBlock.Text = result.ToString();
+
+                    // Зберігаємо в базу даних
+                    SaveCalculationToDatabase(currentExpression, result);
                 }
             }
             else if (data == "-" || data == "+" || data == "*" || data == "/" || data == ".")
@@ -103,6 +123,7 @@ namespace Lab6
                 calcDataBlock.Text = calcDataBlock.Text.Substring(0, calcDataBlock.Text.Length - 1);
             }
         }
+
         void CanExecute_Delete(object sender, CanExecuteRoutedEventArgs e)
         {
             if (historyBlock.Text.Trim().Length == 0)
@@ -114,9 +135,27 @@ namespace Lab6
                 e.CanExecute = true;
             };
         }
+
         void Execute_Delete(object sender, ExecutedRoutedEventArgs e)
         {
             historyBlock.Text = "";
+        }
+
+        private void SaveCalculationToDatabase(string expression, int result)
+        {
+            CalculatorHistory newRecord = new CalculatorHistory
+            {
+                MathExpression = expression,
+                Result = result
+            };
+
+            context.CalculatorHistory.Add(newRecord);
+            context.SaveChanges();
+
+            // Оновлюємо локальну колекцію та відображення в DataGrid
+            db_calc_history.Add(newRecord);
+            DataBaseDir.ItemsSource = null;
+            DataBaseDir.ItemsSource = db_calc_history;
         }
     }
 }
