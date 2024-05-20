@@ -114,22 +114,12 @@ namespace Lab6
         }
         private void Execute_Backspace(object sender, ExecutedRoutedEventArgs e)
         {
-            if (!string.IsNullOrEmpty(calcDataBlock.Text))
-            {
-                calcDataBlock.Text = calcDataBlock.Text.Substring(0, calcDataBlock.Text.Length - 1);
-            }
+            calcDataBlock.Text = calcDataBlock.Text.Substring(0, calcDataBlock.Text.Length - 1);
         }
 
         void CanExecute_Delete(object sender, CanExecuteRoutedEventArgs e)
         {
-            if (historyBlock.Text.Trim().Length == 0)
-            {
-                e.CanExecute = false;
-            }
-            else
-            {
-                e.CanExecute = true;
-            };
+            e.CanExecute = !string.IsNullOrEmpty(historyBlock.Text);
         }
         void Execute_Delete(object sender, ExecutedRoutedEventArgs e)
         {
@@ -157,7 +147,6 @@ namespace Lab6
         private void FindByMathExpression(object sender, RoutedEventArgs e)
         {
             string searchTerm = MathExpressionBlock.Text;
-
             var foundRecords = from record in context.CalculatorHistory
                                where record.MathExpression.Contains(searchTerm)
                                select record;
@@ -167,7 +156,6 @@ namespace Lab6
             {
                 db_calc_history.Add(record);
             }
-
             DataBaseDir.ItemsSource = null;
             DataBaseDir.ItemsSource = db_calc_history;
         }
@@ -179,7 +167,6 @@ namespace Lab6
             {
                 return;
             }
-
             var foundRecords = from record in context.CalculatorHistory
                                where record.Result == searchResult
                                select record;
@@ -189,11 +176,18 @@ namespace Lab6
             {
                 db_calc_history.Add(record);
             }
-
             DataBaseDir.ItemsSource = null;
             DataBaseDir.ItemsSource = db_calc_history;
         }
-
-
+        private void UndoSearching(object sender, RoutedEventArgs e)
+        {
+            db_calc_history.Clear();
+            foreach (var record in context.CalculatorHistory)
+            {
+                db_calc_history.Add(record);
+            }
+            DataBaseDir.ItemsSource = null;
+            DataBaseDir.ItemsSource = db_calc_history;
+        }
     }
 }

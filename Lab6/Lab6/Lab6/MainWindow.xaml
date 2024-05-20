@@ -46,7 +46,7 @@
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
-                 </Grid.ColumnDefinitions>
+                </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="2*"></RowDefinition>
                     <RowDefinition Height="1.5*"></RowDefinition>
@@ -56,48 +56,46 @@
                     <RowDefinition Height="*"></RowDefinition>
                     <RowDefinition Height="2*"></RowDefinition>
                     <RowDefinition Height="3*"></RowDefinition>
-                 </Grid.RowDefinitions>
+                </Grid.RowDefinitions>
 
-        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4">
-            <TextBlock TextWrapping="Wrap" VerticalAlignment="Center"  Foreground="WhiteSmoke" FontSize="35" Padding="7" x:Name="calcDataBlock"></TextBlock>
-        </ScrollViewer>
+                <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4">
+                    <TextBlock TextWrapping="Wrap" VerticalAlignment="Center"  Foreground="WhiteSmoke" FontSize="35" Padding="7" x:Name="calcDataBlock"></TextBlock>
+                </ScrollViewer>
 
-        <Button FontSize="25" Grid.Row="1" Grid.Column="2">C</Button>
-        <Button FontSize="25" Grid.Row="1" Grid.Column="3" Name="btnBackspace">
-            <Image Source="/Images/delete-315.png" Height="50"/>
-        </Button>
-        <Button FontSize="25" Grid.Row="4" Grid.Column="0">1</Button>
-        <Button FontSize="25" Grid.Row="4" Grid.Column="1">2</Button>
-        <Button FontSize="25" Grid.Row="4" Grid.Column="2">3</Button>
-        <Button FontSize="25" Grid.Row="3" Grid.Column="0">4</Button>
-        <Button FontSize="25" Grid.Row="3" Grid.Column="1">5</Button>
-        <Button FontSize="25" Grid.Row="3" Grid.Column="2">6</Button>
-        <Button FontSize="25" Grid.Row="2" Grid.Column="0">7</Button>
-        <Button FontSize="25" Grid.Row="2" Grid.Column="1">8</Button>
-        <Button FontSize="25" Grid.Row="2" Grid.Column="2">9</Button>
-        <Button FontSize="25" Grid.Row="5" Grid.Column="0">0</Button>
-        <Button FontSize="25" Grid.Row="5" Grid.Column="1">.</Button>
-        <Button FontSize="25" Grid.Row="5" Grid.Column="2">=</Button>
-        <Button FontSize="25" Grid.Row="2" Grid.Column="3">*</Button>
-        <Button FontSize="25" Grid.Row="3" Grid.Column="3">/</Button>
-        <Button FontSize="25" Grid.Row="4" Grid.Column="3">+</Button>
-        <Button FontSize="25" Grid.Row="5" Grid.Column="3">-</Button>
+                <Button FontSize="25" Grid.Row="1" Grid.Column="2">C</Button>
+                <Button FontSize="25" Grid.Row="1" Grid.Column="3" Name="btnBackspace">
+                    <Image Source="/Images/delete-315.png" Height="50"/>
+                </Button>
+                <Button FontSize="25" Grid.Row="4" Grid.Column="0">1</Button>
+                <Button FontSize="25" Grid.Row="4" Grid.Column="1">2</Button>
+                <Button FontSize="25" Grid.Row="4" Grid.Column="2">3</Button>
+                <Button FontSize="25" Grid.Row="3" Grid.Column="0">4</Button>
+                <Button FontSize="25" Grid.Row="3" Grid.Column="1">5</Button>
+                <Button FontSize="25" Grid.Row="3" Grid.Column="2">6</Button>
+                <Button FontSize="25" Grid.Row="2" Grid.Column="0">7</Button>
+                <Button FontSize="25" Grid.Row="2" Grid.Column="1">8</Button>
+                <Button FontSize="25" Grid.Row="2" Grid.Column="2">9</Button>
+                <Button FontSize="25" Grid.Row="5" Grid.Column="0">0</Button>
+                <Button FontSize="25" Grid.Row="5" Grid.Column="1">.</Button>
+                <Button FontSize="25" Grid.Row="5" Grid.Column="2">=</Button>
+                <Button FontSize="25" Grid.Row="2" Grid.Column="3">*</Button>
+                <Button FontSize="25" Grid.Row="3" Grid.Column="3">/</Button>
+                <Button FontSize="25" Grid.Row="4" Grid.Column="3">+</Button>
+                <Button FontSize="25" Grid.Row="5" Grid.Column="3">-</Button>
 
-        <TextBlock FontSize="30" Foreground="LightGray" Margin="30,20,0,0" Grid.Row="6" Grid.Column="0">
-            Історія:
-        </TextBlock>
-        <ScrollViewer Margin="30,0,0,10" FontSize="25" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="3" VerticalScrollBarVisibility="Auto">
-            <TextBlock x:Name="historyBlock" Foreground="WhiteSmoke" TextWrapping="Wrap"/>
-        </ScrollViewer>
+                <TextBlock FontSize="30" Foreground="LightGray" Margin="30,20,0,0" Grid.Row="6" Grid.Column="0">Історія:</TextBlock>
+                <ScrollViewer Margin="30,0,0,10" FontSize="25" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="3" VerticalScrollBarVisibility="Auto">
+                    <TextBlock x:Name="historyBlock" Foreground="WhiteSmoke" TextWrapping="Wrap"/>
+                </ScrollViewer>
 
                 <Button Grid.Row="7" Foreground="LightGray" Grid.Column="3" FontSize="20" Command="Delete">
                     <TextBlock Text="Видалити&#x0a;історію" TextAlignment="Center"/>
                 </Button>
             </Grid>
-            
-            
+
+
         </TabItem>
-            <TabItem Header="DataBase">
+        <TabItem Header="DataBase">
             <StackPanel>
                 <StackPanel Orientation="Vertical" Width="200">
                     <TextBlock>Пошук за виразом:</TextBlock>
@@ -109,7 +107,7 @@
                     <TextBox Name="ResultBlock"></TextBox>
                     <Button Click="FindByResult">Знайти</Button>
                 </StackPanel>
-                
+                <Button Click="UndoSearching" HorizontalAlignment="Center" Width="200" Margin="0,0,0,10">Відмінити пошук</Button>
                 <ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="250">
                     <DataGrid Name="DataBaseDir" Height="Auto"/>
                 </ScrollViewer>
