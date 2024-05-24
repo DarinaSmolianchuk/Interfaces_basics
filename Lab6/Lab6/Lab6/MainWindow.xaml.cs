@@ -32,8 +32,8 @@ namespace Lab6
             CommandBinding BackspaceCommandBinding = new CommandBinding(BackspaceCommand, Execute_Backspace, CanExecute_Backspace);
             CommandBindings.Add(BackspaceCommandBinding);
 
-            CommandBinding ReplaceCommand = new CommandBinding(ApplicationCommands.Delete, Execute_Delete, CanExecute_Delete);
-            CommandBindings.Add(ReplaceCommand);
+            CommandBinding DeleteCommand = new CommandBinding(ApplicationCommands.Delete, Execute_Delete, CanExecute_Delete);
+            CommandBindings.Add(DeleteCommand);
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -90,17 +90,8 @@ namespace Lab6
             }
             else if (data == "-" || data == "+" || data == "*" || data == "/" || data == ".")
             {
-                if (!calcDataBlock.Text.EndsWith("/") && !calcDataBlock.Text.EndsWith("*") && !calcDataBlock.Text.EndsWith("+") && !calcDataBlock.Text.EndsWith("-") && calcDataBlock.Text != "")
+                if (!calcDataBlock.Text.EndsWith("/") && !calcDataBlock.Text.EndsWith("*") && !calcDataBlock.Text.EndsWith("+") && !calcDataBlock.Text.EndsWith("-") && !calcDataBlock.Text.EndsWith(".") && calcDataBlock.Text != "")
                     calcDataBlock.Text += data;
-            }
-            else if (data == ".")
-            {
-                if (!calcDataBlock.Text.EndsWith("."))
-                    calcDataBlock.Text += data;
-            }
-            else if (data == "Очистити" || data == "Завантажити")
-            {
-
             }
             else
             {
