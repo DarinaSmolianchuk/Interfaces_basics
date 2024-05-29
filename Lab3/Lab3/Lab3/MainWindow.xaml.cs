@@ -21,8 +21,8 @@ namespace Lab3
             CommandBinding BackspaceCommandBinding = new CommandBinding(BackspaceCommand, Execute_Backspace, CanExecute_Backspace);
             CommandBindings.Add(BackspaceCommandBinding);
 
-            CommandBinding ReplaceCommand = new CommandBinding(ApplicationCommands.Delete, Execute_Delete, CanExecute_Delete);
-            CommandBindings.Add(ReplaceCommand);
+            CommandBinding DeleteCommand = new CommandBinding(ApplicationCommands.Delete, Execute_Delete, CanExecute_Delete);
+            CommandBindings.Add(DeleteCommand);
         }
 
         private void ButtonClick(object sender, RoutedEventArgs e)
@@ -57,17 +57,8 @@ namespace Lab3
             }
             else if (data == "-" || data == "+" || data == "*" || data == "/" || data == ".")
             {
-                if (!calcDataBlock.Text.EndsWith("/") && !calcDataBlock.Text.EndsWith("*") && !calcDataBlock.Text.EndsWith("+") && !calcDataBlock.Text.EndsWith("-") && calcDataBlock.Text != "")
+                if (!calcDataBlock.Text.EndsWith("/") && !calcDataBlock.Text.EndsWith("*") && !calcDataBlock.Text.EndsWith("+") && !calcDataBlock.Text.EndsWith("-") && !calcDataBlock.Text.EndsWith(".") && calcDataBlock.Text != "")
                     calcDataBlock.Text += data;
-            }
-            else if (data == ".")
-            {
-                if (!calcDataBlock.Text.EndsWith("."))
-                    calcDataBlock.Text += data;
-            }
-            else if (data == "Очистити" || data == "Завантажити")
-            {
-
             }
             else
             {
@@ -89,14 +80,7 @@ namespace Lab3
         }
         void CanExecute_Delete(object sender, CanExecuteRoutedEventArgs e)
         {
-            if (historyBlock.Text.Trim().Length == 0)
-            {
-                e.CanExecute = false;
-            }
-            else
-            {
-                e.CanExecute = true;
-            };
+            e.CanExecute = !string.IsNullOrEmpty(historyBlock.Text);
         }
         void Execute_Delete(object sender, ExecutedRoutedEventArgs e)
         {
