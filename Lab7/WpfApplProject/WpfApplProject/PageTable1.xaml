@@ -20,6 +20,26 @@
             <GradientStop Color="Gray" Offset="0.75" />
             <GradientStop Color="DimGray" Offset="1" />
         </RadialGradientBrush>
+
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="DarkGray"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
     </Page.Resources>
 
     <Page.CommandBindings>
@@ -44,8 +64,9 @@
     </Page.CommandBindings>
 
 
-    <Grid Background="{StaticResource RadialGradient}">
-        <StackPanel Background="Transparent">
+    <DockPanel Background="{StaticResource RadialGradient}">
+        
+        <StackPanel Background="Transparent" Grid.Row="0" DockPanel.Dock="Top">
             <Menu>
                 <MenuItem Header="Дія">
                     <MenuItem Command="Undo" Header="Скасувати"/>
@@ -81,6 +102,62 @@
                 </Button>
             </ToolBar>
         </StackPanel>
-    </Grid>
+
+        <Grid DockPanel.Dock="Bottom" x:Name="GridBlock" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="1.5*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="3*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4">
+                <TextBlock TextWrapping="Wrap" VerticalAlignment="Center"  Foreground="WhiteSmoke" FontSize="35" Padding="7" x:Name="calcDataBlock"></TextBlock>
+            </ScrollViewer>
+
+            <Button FontSize="25" Grid.Row="1" Grid.Column="2">C</Button>
+            <Button FontSize="25" Grid.Row="1" Grid.Column="3" Name="btnBackspace">
+                <Image Source="/Images/delete-315.png" Height="50"/>
+            </Button>
+            <Button FontSize="25" Grid.Row="4" Grid.Column="0">1</Button>
+            <Button FontSize="25" Grid.Row="4" Grid.Column="1">2</Button>
+            <Button FontSize="25" Grid.Row="4" Grid.Column="2">3</Button>
+            <Button FontSize="25" Grid.Row="3" Grid.Column="0">4</Button>
+            <Button FontSize="25" Grid.Row="3" Grid.Column="1">5</Button>
+            <Button FontSize="25" Grid.Row="3" Grid.Column="2">6</Button>
+            <Button FontSize="25" Grid.Row="2" Grid.Column="0">7</Button>
+            <Button FontSize="25" Grid.Row="2" Grid.Column="1">8</Button>
+            <Button FontSize="25" Grid.Row="2" Grid.Column="2">9</Button>
+            <Button FontSize="25" Grid.Row="5" Grid.Column="0">0</Button>
+            <Button FontSize="25" Grid.Row="5" Grid.Column="1">.</Button>
+            <Button FontSize="25" Grid.Row="5" Grid.Column="2">=</Button>
+            <Button FontSize="25" Grid.Row="2" Grid.Column="3">*</Button>
+            <Button FontSize="25" Grid.Row="3" Grid.Column="3">/</Button>
+            <Button FontSize="25" Grid.Row="4" Grid.Column="3">+</Button>
+            <Button FontSize="25" Grid.Row="5" Grid.Column="3">-</Button>
+
+            <TextBlock FontSize="30" Foreground="LightGray" Margin="30,20,0,0" Grid.Row="6" Grid.Column="0">
+            Історія:
+            </TextBlock>
+            <ScrollViewer Margin="30,0,0,10" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="3" VerticalScrollBarVisibility="Auto">
+                <TextBlock  FontSize="25" x:Name="historyBlock" Foreground="WhiteSmoke" TextWrapping="Wrap"/>
+            </ScrollViewer>
+
+            <Button Grid.Row="7" Foreground="LightGray" Grid.Column="3" x:Name="btnDeleteHistory"
+                Command="{x:Static local:PageTable1.DeleteHistoryCommand}">
+                <TextBlock Text="Видалити&#x0a;історію" TextAlignment="Center" FontSize="20"/>
+            </Button>
+        </Grid>
+    </DockPanel>
 
 </Page>

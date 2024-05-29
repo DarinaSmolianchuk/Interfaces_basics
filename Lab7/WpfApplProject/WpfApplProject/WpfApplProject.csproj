@@ -35,8 +35,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -62,6 +69,24 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CalcHistory.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CalcHistory.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CalcHistory.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CalcHistory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CalcHistory.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CalcHistory.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="CalculatorHistory.cs">
+      <DependentUpon>CalcHistory.tt</DependentUpon>
     </Compile>
     <Compile Include="Commands\DataCommands.cs" />
     <Compile Include="MainWindow.xaml.cs">
@@ -108,6 +133,14 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EntityDeploy Include="CalcHistory.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>CalcHistory.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="CalcHistory.edmx.diagram">
+      <DependentUpon>CalcHistory.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -123,6 +156,24 @@
     <Resource Include="Images\Редагувати.png" />
     <Resource Include="Images\Скасувати.png" />
     <Resource Include="Images\Створити.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\delete-315.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CalcHistory.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>CalcHistory.Context.cs</LastGenOutput>
+      <DependentUpon>CalcHistory.edmx</DependentUpon>
+    </Content>
+    <Content Include="CalcHistory.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CalcHistory.edmx</DependentUpon>
+      <LastGenOutput>CalcHistory.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
