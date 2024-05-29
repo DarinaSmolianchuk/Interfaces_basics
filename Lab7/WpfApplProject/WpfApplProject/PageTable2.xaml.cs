@@ -83,6 +83,15 @@ namespace WpfApplProject
             DataBaseDir.ItemsSource = null;
             DataBaseDir.ItemsSource = db_calc_history;
         }
-
+        private void UndoSearching(object sender, RoutedEventArgs e)
+        {
+            db_calc_history.Clear();
+            foreach (var record in context.CalculatorHistory)
+            {
+                db_calc_history.Add(record);
+            }
+            DataBaseDir.ItemsSource = null;
+            DataBaseDir.ItemsSource = db_calc_history;
+        }
     }
 }

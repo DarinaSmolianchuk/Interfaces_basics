@@ -40,8 +40,8 @@
     </Page.Resources>
     <Grid x:Name="GridBlock" Background="{StaticResource RadialGradient}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="8*"></RowDefinition>
-            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0">
             <StackPanel Orientation="Vertical" Width="200">
@@ -54,10 +54,11 @@
                 <TextBox Name="ResultBlock"></TextBox>
                 <Button Click="FindByResult">Знайти</Button>
             </StackPanel>
-
-            <ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="250" Grid.Row="1">
+            <Button Click="UndoSearching" HorizontalAlignment="Center" Width="200" Margin="0,0,0,10">Відмінити пошук</Button>
+            <ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="400" Grid.Row="1">
                 <DataGrid Name="DataBaseDir" Height="Auto"/>
             </ScrollViewer>
+
         </StackPanel>
 
     </Grid>

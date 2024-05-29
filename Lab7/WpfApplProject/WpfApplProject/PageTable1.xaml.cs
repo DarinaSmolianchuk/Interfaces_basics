@@ -1,10 +1,8 @@
-﻿using System.Data;
-using System;
+﻿using System;
+using System.Data;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Runtime.Remoting.Contexts;
-using System.Collections.Generic;
 
 namespace WpfApplProject
 {
@@ -19,8 +17,6 @@ namespace WpfApplProject
             foreach (UIElement uielement in GridBlock.Children)
                 if (uielement is Button)
                     ((Button)uielement).Click += ButtonClick;
-
-
 
             btnBackspace.Command = BackspaceCommand;
             CommandBinding BackspaceCommandBinding = new CommandBinding(BackspaceCommand, Execute_Backspace, CanExecute_Backspace);
